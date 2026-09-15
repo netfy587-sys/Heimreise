@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selbst Angebaut — Ein Balkongarten-Magazin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --wood:#7a5230;
+    --wood-dark:#5a3a20;
+    --sun:#f2b134;
+    --sun-deep:#e0912a;
+    --leafgreen:#5a7d3a;
+    --leafgreen-dark:#3c5926;
+    --terracotta:#c1602f;
+    --cream:#fdf5e6;
+    --paper:#fffaf0;
+    --ink:#3a2c1a;
+    --ink-soft:#5f4f39;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Lora', serif;
+    line-height:1.75;
+  }
+  h1,h2,h3,.disp{
+    font-family:'Bricolage Grotesque', sans-serif;
+    font-weight:800;
+    color:var(--wood-dark);
+  }
+  .wrap{ max-width:760px; margin:0 auto; padding:0 24px; }
+
+  header.top{
+    background: repeating-linear-gradient(90deg, var(--wood) 0 94px, var(--wood-dark) 94px 98px);
+    padding:16px 0;
+  }
+  header.top .row{
+    max-width:760px; margin:0 auto; padding:0 24px;
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:0.85rem; color:var(--cream);
+  }
+
+  .hero{ padding:50px 0 26px; }
+  .hero .seed-tag{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--sun);
+    color:var(--wood-dark);
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-weight:700;
+    font-size:0.82rem;
+    padding:6px 14px;
+    border-radius:6px;
+    transform:rotate(-2deg);
+    margin-bottom:20px;
+    box-shadow: 3px 3px 0 rgba(58,44,26,0.15);
+  }
+  .hero h1{
+    font-size:clamp(2.4rem,6.8vw,4rem);
+    line-height:1.03;
+    margin:0 0 20px;
+    max-width:14ch;
+  }
+  .hero h1 .pop{ color:var(--leafgreen); }
+  .hero .dek{
+    font-size:1.12rem;
+    color:var(--ink-soft);
+    max-width:50ch;
+    margin:0 0 24px;
+  }
+  .hero .byline{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-weight:700;
+    color:var(--terracotta);
+    font-size:0.95rem;
+  }
+
+  figure{ margin:36px 0; }
+  figure svg{ display:block; width:100%; height:auto; border-radius:10px; }
+  figcaption{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-size:0.9rem;
+    color:var(--ink-soft);
+    margin-top:10px;
+  }
+
+  .divider{
+    display:flex; align-items:center; gap:12px;
+    margin:48px 0 18px;
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-weight:700;
+    color:var(--leafgreen-dark);
+    font-size:0.95rem;
+    text-transform:lowercase;
+  }
+  .divider .tick{
+    background:var(--leafgreen);
+    color:#fff;
+    padding:4px 12px;
+    border-radius:20px;
+  }
+  .divider::after{ content:""; flex:1; height:2px; background-image: repeating-linear-gradient(90deg, var(--leafgreen) 0 8px, transparent 8px 14px); }
+
+  section h2{ font-size:clamp(1.7rem,4.2vw,2.2rem); margin:0 0 10px; }
+  .qnum{ color:var(--terracotta); }
+  p{ margin:0 0 18px; color:var(--ink-soft); }
+  p strong{ color:var(--ink); }
+  .lede{ color:var(--ink); font-size:1.1rem; }
+  mark{ background:#fde3a0; padding:0 4px; border-radius:2px; }
+
+  .stat-strip{ display:flex; flex-wrap:wrap; gap:16px; margin:26px 0 36px; }
+  .stat-card{
+    flex:1 1 150px;
+    background:var(--paper);
+    border:3px solid var(--wood);
+    border-radius:10px;
+    padding:16px;
+  }
+  .stat-card .big{ font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:1.9rem; color:var(--terracotta); display:block; line-height:1; }
+  .stat-card .lbl{ font-size:0.85rem; color:var(--ink-soft); display:block; margin-top:8px; }
+
+  .cards{ display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin:20px 0 32px; }
+  .card{
+    background:var(--paper);
+    border-radius:10px;
+    padding:18px;
+    border-top:5px solid var(--sun);
+  }
+  .card:nth-child(2){ border-top-color: var(--leafgreen); }
+  .card:nth-child(3){ border-top-color: var(--terracotta); }
+  .card:nth-child(4){ border-top-color: var(--wood); }
+  .card h3{ font-size:1.05rem; margin:0 0 6px; font-family:'Bricolage Grotesque',sans-serif; }
+  .card p{ font-size:0.95rem; margin:0; }
+
+  .callout{
+    background:var(--leafgreen-dark);
+    color:#eef4e2;
+    border-radius:12px;
+    padding:22px 26px;
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-weight:700;
+    font-size:1.2rem;
+    line-height:1.4;
+    margin:34px 0;
+  }
+
+  .seed-grid{ display:flex; flex-wrap:wrap; gap:12px; margin:18px 0 34px; }
+  .seed-chip{
+    background:var(--paper);
+    border:2px solid var(--wood);
+    border-radius:8px;
+    padding:10px 14px;
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-size:0.9rem;
+    font-weight:700;
+    color:var(--wood-dark);
+    display:flex; align-items:center; gap:6px;
+  }
+
+  .steps{ list-style:none; padding:0; margin:18px 0 34px; counter-reset: step; }
+  .steps li{
+    counter-increment: step;
+    position:relative;
+    background:var(--paper);
+    border-radius:10px;
+    padding:16px 18px 16px 58px;
+    margin-bottom:14px;
+    border:1.5px solid #e6d3ad;
+  }
+  .steps li::before{
+    content: counter(step);
+    position:absolute; left:14px; top:14px;
+    width:30px; height:30px;
+    background:var(--terracotta); color:#fff;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:1rem;
+  }
+  .steps h3{ margin:0 0 4px; font-size:1.05rem; font-family:'Bricolage Grotesque',sans-serif; }
+  .steps p{ margin:0; font-size:0.95rem; }
+
+  .checklist{ list-style:none; padding:0; margin:18px 0 30px; }
+  .checklist li{ display:flex; align-items:flex-start; gap:12px; margin-bottom:13px; color:var(--ink-soft); }
+  .checklist .box{
+    flex:0 0 20px; width:20px; height:20px;
+    background:var(--sun);
+    border-radius:4px;
+    margin-top:2px;
+    transform: rotate(-3deg);
+  }
+
+  footer{
+    background: repeating-linear-gradient(90deg, var(--wood) 0 94px, var(--wood-dark) 94px 98px);
+    color:var(--cream);
+    margin-top:54px;
+    padding:28px 0 50px;
+    font-size:0.92rem;
+  }
+  footer .tag{
+    display:inline-block;
+    background:var(--sun);
+    color:var(--wood-dark);
+    padding:6px 14px;
+    border-radius:6px;
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-weight:700;
+    margin-bottom:14px;
+  }
+  footer p{ color:#f0e2c4; max-width:56ch; }
+
+  @media (max-width:560px){
+    .cards{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="row">
+    <span>das balkon-magazin — ausgabe 6</span>
+    <span>selbst angebaut</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="hero">
+    <span class="seed-tag">🌱 lesezeit: ~8 min</span>
+    <h1>Selbst <span class="pop">Angebaut</span></h1>
+    <p class="dek">Kein Bauernhof, kein Garten, manchmal nicht einmal ein Hinterhof — nur ein Balkon, ein paar Töpfe und die seltsame Zufriedenheit, eine selbst gezogene Tomate zu essen. Warum immer mehr Stadtmenschen ihre Balkone und Terrassen in winzige Farmen verwandeln.</p>
+    <p class="byline">für alle mit 2 Quadratmetern und ein bisschen Neugier</p>
+  </div>
+
+  <figure>
+    <svg viewBox="0 0 760 420" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="760" height="420" fill="#f2b134"/>
+      <rect x="0" y="260" width="760" height="160" fill="#c1602f" opacity="0.15"/>
+      <rect x="0" y="300" width="760" height="16" fill="#5a3a20"/>
+      <g stroke="#5a3a20" stroke-width="8">
+        <line x1="30" y1="300" x2="30" y2="240"/>
+        <line x1="110" y1="300" x2="110" y2="240"/>
+        <line x1="190" y1="300" x2="190" y2="240"/>
+        <line x1="270" y1="300" x2="270" y2="240"/>
+      </g>
+      <rect x="0" y="230" width="300" height="14" fill="#5a3a20"/>
+      <g fill="#e0912a" opacity="0.5">
+        <rect x="330" y="60" width="60" height="200"/>
+        <rect x="400" y="90" width="50" height="170"/>
+        <rect x="460" y="40" width="55" height="220"/>
+        <rect x="525" y="100" width="60" height="160"/>
+        <rect x="595" y="70" width="50" height="190"/>
+        <rect x="655" y="110" width="60" height="150"/>
+      </g>
+      <g transform="translate(90,340)">
+        <path d="M-24 60 L24 60 L18 0 L-18 0 Z" fill="#c1602f"/>
+        <path d="M0 0 C-4 -30 -4 -60 0 -80" stroke="#3c5926" stroke-width="6" stroke-linecap="round" fill="none"/>
+        <ellipse cx="-14" cy="-40" rx="16" ry="10" fill="#5a7d3a" transform="rotate(-20 -14 -40)"/>
+        <ellipse cx="14" cy="-55" rx="16" ry="10" fill="#5a7d3a" transform="rotate(20 14 -55)"/>
+        <circle cx="0" cy="-75" r="9" fill="#c1602f"/>
+      </g>
+      <g transform="translate(210,340)">
+        <path d="M-24 60 L24 60 L18 0 L-18 0 Z" fill="#c1602f"/>
+        <path d="M-8 0 C-14 -30 -10 -55 -14 -75" stroke="#3c5926" stroke-width="5" stroke-linecap="round" fill="none"/>
+        <path d="M8 0 C14 -30 10 -55 14 -75" stroke="#5a7d3a" stroke-width="5" stroke-linecap="round" fill="none"/>
+        <circle cx="-14" cy="-75" r="10" fill="#e0912a"/>
+        <circle cx="14" cy="-75" r="10" fill="#e0912a"/>
+      </g>
+      <g transform="translate(330,340)">
+        <path d="M-24 60 L24 60 L18 0 L-18 0 Z" fill="#c1602f"/>
+        <path d="M0 0 C0 -35 0 -60 0 -85" stroke="#3c5926" stroke-width="6" stroke-linecap="round" fill="none"/>
+        <ellipse cx="0" cy="-40" rx="26" ry="14" fill="#5a7d3a"/>
+        <ellipse cx="-16" cy="-60" rx="18" ry="10" fill="#5a7d3a" transform="rotate(-15 -16 -60)"/>
+        <ellipse cx="16" cy="-60" rx="18" ry="10" fill="#3c5926" transform="rotate(15 16 -60)"/>
+      </g>
+      <g transform="translate(430,375)">
+        <rect x="-16" y="-18" width="32" height="18" rx="4" fill="#5a3a20"/>
+        <path d="M16 -14 L38 -24" stroke="#5a3a20" stroke-width="6" stroke-linecap="round"/>
+        <path d="M-16 -18 L-30 -30" stroke="#5a3a20" stroke-width="6" stroke-linecap="round"/>
+      </g>
+      <circle cx="660" cy="70" r="34" fill="#fdf5e6"/>
+    </svg>
+    <figcaption>ein ganzer Hofladen passt auf ein Geländer — Tomaten, Chilis und ein, zwei Kräuter.</figcaption>
+  </figure>
+
+  <p class="lede">Man braucht kein Land mehr, um Landwirtschaft zu betreiben — nur Licht, ein paar Gefäße und die Geduld, eine Saison abzuwarten. In Städten überall verwandeln sich Balkone und Terrassen, auf denen früher Wäsche und alte Möbel standen, still und leise in <mark>winzige, funktionierende Farmen</mark>: ein paar Tomatentöpfe, eine Chilipflanze, eine Reihe Koriander.</p>
+
+  <p>Dabei geht es nicht wirklich um Selbstversorgung — niemand ernährt eine Familie von einem einzigen Balkon. Es geht um dieses kleine, besondere Vergnügen, ein Essen mit etwas zuzubereiten, das man selbst vom Samen an wachsen gesehen hat — und um eine leise Gegenbewegung zu Lebensmitteln, die vorverpackt ankommen, ohne jede Geschichte.</p>
+
+  <div class="stat-strip">
+    <div class="stat-card">
+      <span class="big">800 Mio.+</span>
+      <span class="lbl">Menschen weltweit betreiben laut Schätzungen von UN und FAO eine Form von urbaner Landwirtschaft</span>
+    </div>
+    <div class="stat-card">
+      <span class="big">6 Wochen</span>
+      <span class="lbl">ungefähre Zeit von der Aussaat bis zur ersten Ernte bei schnellen Anfängerpflanzen wie Radieschen oder Koriander</span>
+    </div>
+    <div class="stat-card">
+      <span class="big">4-6 Std.</span>
+      <span class="lbl">direktes Sonnenlicht am Tag brauchen die meisten Fruchtgemüse (Tomate, Chili), um wirklich gut zu tragen</span>
+    </div>
+  </div>
+
+  <div class="divider"><span class="tick">warum überhaupt</span></div>
+
+  <section id="why">
+    <h2><span class="qnum">01 /</span> Warum ein Balkon, warum jetzt</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Essen, das nicht abstrakt ist</h3>
+        <p>Auch nur ein Gemüse selbst anzubauen macht alles sichtbar, was normalerweise unbemerkt bleibt — die Zeit, das Wetter, die Mühe hinter jeder Mahlzeit.</p>
+      </div>
+      <div class="card">
+        <h3>Ein Hobby mit essbarem Ende</h3>
+        <p>Anders als die meisten Hobbys endet dieses in einem Abendessen. Diese greifbare Belohnung bringt Menschen zurück, wenn andere Gewohnheiten längst verblasst sind.</p>
+      </div>
+      <div class="card">
+        <h3>Kleine Fläche, echtes Ergebnis</h3>
+        <p>Man braucht wirklich keinen Garten — ein sonniges Geländer, ein paar Pflanzsäcke und regelmäßiges Gießen können eine überraschende Menge an Essen hervorbringen.</p>
+      </div>
+      <div class="card">
+        <h3>Ein täglicher Grund, rauszugehen</h3>
+        <p>Ein morgendlicher Blick auf die Pflanzen ist ein kleines, mühelosen Ritual, das Menschen jeden Tag kurz nach draußen und weg vom Handy bringt.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="callout">die erste selbst gezogene Tomate schmeckt nie wieder so wie beim ersten Mal — und genau darum geht es eigentlich.</div>
+
+  <div class="divider"><span class="tick">hier anfangen</span></div>
+
+  <section id="start">
+    <h2><span class="qnum">02 /</span> Die einfachsten ersten Pflanzen</h2>
+    <p>Am Anfang lieber nichts Ambitioniertes wagen. Diese verzeihen Anfängerfehler und wachsen schnell genug, um motiviert zu bleiben:</p>
+    <div class="seed-grid">
+      <span class="seed-chip">🌿 Koriander</span>
+      <span class="seed-chip">🌶️ Chili</span>
+      <span class="seed-chip">🍅 Cocktailtomate</span>
+      <span class="seed-chip">🥬 Spinat</span>
+      <span class="seed-chip">🧅 Frühlingszwiebel</span>
+      <span class="seed-chip">🌱 Minze</span>
+      <span class="seed-chip">🫑 Paprika</span>
+      <span class="seed-chip">🍋 Curryblatt</span>
+    </div>
+  </section>
+
+  <div class="divider"><span class="tick">so fängst du an</span></div>
+
+  <section id="how">
+    <h2><span class="qnum">03 /</span> Deine ersten sechs Wochen</h2>
+    <ol class="steps">
+      <li>
+        <h3>Sonnenlicht beobachten, bevor du etwas kaufst</h3>
+        <p>Beobachte deinen Balkon einen ganzen Tag lang. Notiere, wo tatsächlich direktes Licht ankommt und wie lange — das entscheidet über alles andere, was du anbauen kannst.</p>
+      </li>
+      <li>
+        <h3>Mit Gefäßen starten, die Wasser ablassen</h3>
+        <p>Pflanzsäcke oder Töpfe mit Abflusslöchern sind wichtiger als die Erdenmarke — nasse, stehende Wurzeln sind der häufigste Anfängerfehler.</p>
+      </li>
+      <li>
+        <h3>Richtige Pflanzerde statt Gartenerde</h3>
+        <p>Eine leichte Mischung aus Erde, Kompost und Kokoserde oder Sand lässt Wasser und Luft viel besser durch als verdichtete Gartenerde allein.</p>
+      </li>
+      <li>
+        <h3>Nach Gefühl gießen, nicht nach Plan</h3>
+        <p>Vor dem Gießen mit dem Finger in die Erde fühlen. Topfpflanzen trocknen schneller aus als Erde im Boden, besonders bei Sommerhitze.</p>
+      </li>
+      <li>
+        <h3>Leicht düngen, alle paar Wochen</h3>
+        <p>Etwas Kompost oder verdünnter Bio-Dünger alle 2-3 Wochen hält Topfpflanzen versorgt — sie kommen nicht so leicht an Nährstoffe wie Pflanzen im Boden.</p>
+      </li>
+      <li>
+        <h3>Verluste einplanen, weitermachen</h3>
+        <p>Ein Schädlingsbefall oder eine Pflanze, die es einfach nicht schafft, ist normal, kein Versagen. Jede Gärtnerin und jeder Gärtner verliert ein paar, bevor sie ein Gefühl dafür bekommen.</p>
+      </li>
+    </ol>
+  </section>
+
+  <figure>
+    <svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="760" height="300" fill="#5a7d3a"/>
+      <rect x="30" y="26" width="700" height="248" fill="#fdf5e6" rx="12"/>
+      <path d="M300 220 L460 220 L440 130 L320 130 Z" fill="#7a5230"/>
+      <path d="M310 130 Q380 90 450 130" fill="none" stroke="#5a3a20" stroke-width="6"/>
+      <circle cx="340" cy="120" r="16" fill="#c1602f"/>
+      <circle cx="370" cy="112" r="16" fill="#e0912a"/>
+      <circle cx="400" cy="120" r="16" fill="#c1602f"/>
+      <circle cx="425" cy="130" r="14" fill="#5a7d3a"/>
+      <rect x="355" y="95" width="10" height="26" fill="#3c5926"/>
+      <text x="380" y="255" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="700" font-size="17" fill="#5f4f39">sechs Wochen gießen, ein guter Korb</text>
+    </svg>
+    <figcaption>der Lohn ist keine Ernte, die dich ein Jahr lang ernährt — sondern ein guter, stolzer Erntekorb.</figcaption>
+  </figure>
+
+  <div class="divider"><span class="tick">der ehrliche teil</span></div>
+
+  <section id="real">
+    <h2><span class="qnum">04 /</span> Was tatsächlich schiefgeht</h2>
+    <p>Anfänger-Balkongärten scheitern meist still, aus einem von drei Gründen: zu <strong>viel Gießen</strong> aus lauter Fürsorge, <strong>zu wenig Sonne</strong> durch eine allzu optimistische Einschätzung des Balkons, oder <strong>zu frühes Aufgeben</strong> in den langsamen ersten Wochen, bevor über der Erde überhaupt echtes Wachstum sichtbar ist. Bei keinem davon fehlt wirklich der "grüne Daumen" — es fehlt nur noch das Gefühl für den eigenen Standort.</p>
+    <p>Schädlinge tauchen irgendwann auf — Blattläuse an der Chilipflanze, Trauermücken in zu feuchter Erde. Die meisten lassen sich mit einem einfachen Neemöl-Spray und konstanter Pflege in den Griff bekommen, ohne dramatische Maßnahmen.</p>
+  </section>
+
+  <ul class="checklist" style="max-width:540px;">
+    <li><span class="box"></span><span>Mit 2-3 Töpfen anfangen, nicht gleich mit einer ganzen Balkonfarm — so bleibt es machbar.</span></li>
+    <li><span class="box"></span><span>Pflanzen wählen, die zu den echten Sonnenstunden passen, nicht zu den erhofften.</span></li>
+    <li><span class="box"></span><span>Ein einfaches Anbau-Tagebuch führen — was, wann gepflanzt — das macht aus Rätselraten schnell Erfahrung.</span></li>
+    <li><span class="box"></span><span>Eine lokale Balkongarten-Gruppe finden — getauschte Samen und Tipps schlagen Versuch und Irrtum allein.</span></li>
+  </ul>
+
+  <div class="divider"><span class="tick">zum schluss</span></div>
+
+  <section id="close">
+    <h2><span class="qnum">05 /</span> Zwei Quadratmeter reichen</h2>
+    <p>Man braucht keinen Bauernhof, kein Gewächshaus, nicht einmal viel Platz — viele Menschen beweisen gerade, dass ein Geländer und ein paar Pflanzsäcke reichen, um etwas Echtes anzubauen. Die kleine Größe ist Absicht — genau das macht es machbar, dranzubleiben.</p>
+    <p>Wenn dieses Magazin eines bewirken soll, dann das: Wähle die einfachste Pflanze aus der Liste, säe sie dieses Wochenende in einen Topf, und gib dir sechs Wochen, bevor du urteilst, ob du "das kannst". Die meisten Menschen sind überraschter, als sie erwarten.</p>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <span class="tag">ende der ausgabe — das balkon-magazin</span>
+    <p>Zahlen sind ungefähre Angaben aus veröffentlichter Forschung zur urbanen Landwirtschaft und allgemeinen Gartenratgebern. Dies ist ein Ausgangspunkt für eigene Recherche, keine fachliche gärtnerische Beratung für dein konkretes Klima oder deine Pflanzen.</p>
+  </div>
+</footer>
+
+</body>
+</html>
